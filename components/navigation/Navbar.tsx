@@ -5,8 +5,13 @@ import { NAV_LINKS } from '@/constants';
 import NavLink from './NavLink';
 import MobileNav from './MobileNav';
 import { ThemeToggle } from '../ui/theme-toggle';
+import AuthButtons from '../auth/AuthButtons';
+import { getSession } from '@/lib/auth/get-session';
+import UserMenu from '../UserMenu';
 
-const ViewNavbar = () => {
+const ViewNavbar = async () => {
+  const session = await getSession();
+
   return (
     <nav className='flex items-center justify-between'>
       {/* Site logo */}
@@ -21,6 +26,7 @@ const ViewNavbar = () => {
             label={link.label}
           />
         ))}
+        {session ? <UserMenu /> : <AuthButtons />}
         <ThemeToggle />
       </div>
 

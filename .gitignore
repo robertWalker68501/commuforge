@@ -40,5 +40,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+*.zip
 compose.yaml
 /app/generated/prisma
+
+# Playwright artifacts (may contain verification links)
+/test-results/
+/playwright-report/
