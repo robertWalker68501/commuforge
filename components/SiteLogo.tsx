@@ -22,7 +22,7 @@ const SiteLogo = ({
   imgSrc = '/assets/images/logo-light.png',
   imgAlt = 'Commuforge Logo',
   imgHeight = 30,
-  imgWidth = 30,
+  imgWidth = 27,
   text = 'Commuforge',
 }: SiteLogoProps) => {
   return (

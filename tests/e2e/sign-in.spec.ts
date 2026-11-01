@@ -75,7 +75,7 @@ test.describe('Sign-in — Layer 3', () => {
     const response = await submitSignIn(page);
     expect((await response).ok()).toBeTruthy();
     await expect(page).toHaveURL(/\/dashboard$/);
-    await expect(page.getByText('Dashboard', { exact: true })).toBeVisible();
+    await expect(page.getByRole('main').getByText('Dashboard', { exact: true })).toBeVisible();
     await page.reload();
     await expect(page).toHaveURL(/\/dashboard$/);
   });

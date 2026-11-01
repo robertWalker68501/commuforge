@@ -46,7 +46,7 @@ async function signIn(page: Page): Promise<void> {
   await page.getByRole('button', { name: 'Sign In', exact: true }).click();
   expect((await responsePromise).ok()).toBeTruthy();
   await expect(page).toHaveURL(/\/dashboard$/);
-  await expect(page.getByText('Dashboard', { exact: true })).toBeVisible();
+  await expect(page.getByRole('main').getByText('Dashboard', { exact: true })).toBeVisible();
 }
 
 async function signOut(page: Page): Promise<void> {
@@ -75,7 +75,7 @@ test.describe('Sessions and sign-out — Layer 4', () => {
     await signIn(page);
     await page.reload();
     await expect(page).toHaveURL(/\/dashboard$/);
-    await expect(page.getByText('Dashboard', { exact: true })).toBeVisible();
+    await expect(page.getByRole('main').getByText('Dashboard', { exact: true })).toBeVisible();
   });
 
   test('authenticated visitor is redirected away from sign-in', async ({ page }) => {

@@ -14,6 +14,8 @@ import { Suspense } from 'react';
 import { Spinner } from './ui/spinner';
 import { useRouter } from 'next/navigation';
 import { authClient } from '@/lib/auth-client';
+import Link from 'next/link';
+import { LayoutDashboard } from 'lucide-react';
 
 const ViewUserMenu = () => {
   const router = useRouter();
@@ -50,7 +52,10 @@ const ViewUserMenu = () => {
       />
       <DropdownMenuContent className='w-32'>
         <DropdownMenuGroup>
-          <DropdownMenuItem>Profile</DropdownMenuItem>
+          <DropdownMenuItem render={<Link href='/dashboard' />}>
+            <LayoutDashboard />
+            Dashboard
+          </DropdownMenuItem>
           <DropdownMenuItem>Billing</DropdownMenuItem>
           <DropdownMenuItem>Settings</DropdownMenuItem>
         </DropdownMenuGroup>
