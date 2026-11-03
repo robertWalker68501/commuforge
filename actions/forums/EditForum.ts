@@ -42,7 +42,28 @@ export const editForum = async ({
     categoryId: validatedCategoryId,
   } = validatedFields.data;
 
-  const MAX_RETRIES = 3;
+  const MAX_RETRIES = 5;
+
+const isTransactionConflict = (error: unknown): boolean => {
+  if (
+    error instanceof Prisma.PrismaClientKnownRequestError &&
+    error.code === 'P2034'
+  ) {
+    return true;
+  }
+
+  if (typeof error !== 'object' || error === null) {
+    return false;
+  }
+
+  const cause = 'cause' in error ? error.cause : undefined;
+
+  if (typeof cause !== 'object' || cause === null) {
+    return false;
+  }
+
+  return 'originalCode' in cause && cause.originalCode === '40001';
+};
 
   for (let attempt = 0; attempt < MAX_RETRIES; attempt++) {
     try {

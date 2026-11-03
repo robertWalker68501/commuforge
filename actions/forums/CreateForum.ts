@@ -16,7 +16,7 @@ type CreateForumProps = {
 type CreateForumResult =
   { success: true; message: string } | { success: false; error: string };
 
-const MAX_RETRIES = 3;
+const MAX_RETRIES = 5;
 
 const isTransactionConflict = (error: unknown): boolean => {
   if (
@@ -119,7 +119,10 @@ export const createForum = async ({
       return { success: true, message: 'Forum created successfully.' };
     } catch (error) {
       if (isTransactionConflict(error)) {
-        if (attempt < MAX_RETRIES - 1) continue;
+        if (attempt < MAX_RETRIES - 1) {
+          await new Promise((resolve) => setTimeout(resolve, 30 * (attempt + 1)));
+          continue;
+        }
         return {
           success: false,
           error:
