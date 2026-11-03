@@ -12,7 +12,13 @@ import {
 } from '@/components/ui/sidebar';
 import SiteLogo from '../SiteLogo';
 import Link from 'next/link';
-import { FolderPlus, FolderTree, LayoutDashboard } from 'lucide-react';
+import {
+  FolderPlus,
+  FolderTree,
+  LayoutDashboard,
+  MessageSquarePlus,
+  MessagesSquare,
+} from 'lucide-react';
 import { Suspense } from 'react';
 import { Spinner } from '../ui/spinner';
 import { requireAuth } from '@/lib/auth/require-auth';
@@ -62,6 +68,20 @@ const ViewAppSidebar = async () => {
                   >
                     <FolderPlus />
                     Add Category
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton render={<Link href='/dashboard/forums' />}>
+                    <MessagesSquare />
+                    Forums
+                  </SidebarMenuButton>
+                </SidebarMenuItem>
+                <SidebarMenuItem>
+                  <SidebarMenuButton
+                    render={<Link href='/dashboard/forums/create' />}
+                  >
+                    <MessageSquarePlus />
+                    Add Forum
                   </SidebarMenuButton>
                 </SidebarMenuItem>
               </SidebarMenu>
