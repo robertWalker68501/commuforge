@@ -14,6 +14,7 @@ import prisma from '@/lib/prisma';
 import { Pencil } from 'lucide-react';
 import Link from 'next/link';
 import { Fragment, Suspense } from 'react';
+import ForumMoveButtons from '@/components/forums/ForumMoveButtons';
 
 const ViewForumsListPage = async () => {
   await requireAdmin();
@@ -101,6 +102,12 @@ const ViewForumsListPage = async () => {
                       )}
                       <TableCell>
                         <div className='flex items-center justify-end gap-2'>
+                          <ForumMoveButtons
+                            forumId={forum.id}
+                            forumName={forum.name}
+                            isFirst={index === 0}
+                            isLast={index === category.forums.length - 1}
+                          />
                           <Link
                             href={`/dashboard/forums/${forum.id}/edit`}
                             className={buttonVariants({

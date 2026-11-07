@@ -17,3 +17,8 @@ export const createForumSchema = z.object({
 export const editForumSchema = createForumSchema.extend({
   id: z.uuid(),
 });
+
+export const moveForumSchema = z.object({
+  id: z.uuid(),
+  direction: z.enum(['up', 'down']),
+});
